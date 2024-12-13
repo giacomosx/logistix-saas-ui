@@ -11,7 +11,7 @@ const DashBoardNav = () => {
         <Navbar fluid theme={navbarTheme}>
             <Navbar.Brand href="/">
                 <Logo size={'medium'}/>
-                <span className=" text-secondary ms-2 self-center whitespace-nowrap text-3xl font-semibold dark:text-white">Eco Saas</span>
+                <span className=" text-secondary ms-2 self-center whitespace-nowrap text-3xl font-semibold dark:text-white">Logistix</span>
             </Navbar.Brand>
                 <SearchForm variants={'order-last md:order-none mt-2 md:max-w-md md:mt-0 lg:max-w-xl'} />
             <div className={'flex'}>

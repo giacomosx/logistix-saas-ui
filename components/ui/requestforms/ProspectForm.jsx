@@ -10,6 +10,7 @@ import {
     HiMail,
     HiPhone,
 } from "react-icons/hi";
+import Heading from "@/components/heading/Heading";
 
 const ProspectForm = ({className = '', index = 0}) => {
     const {activeIndex, setActiveIndex, value, setValue} = useRequestContext();
@@ -36,6 +37,9 @@ const ProspectForm = ({className = '', index = 0}) => {
         activeIndex === index && (
             <form
                 className={`${className} flex flex-col md:grid gap-4 grid-cols-2  `} onSubmit={handleSubmit}>
+                <div className="mb-2 col-span-2">
+                    <Heading level={'l3'} color={'secondary'}>New Request</Heading>
+                </div>
                 <div>
                     <div className="mb-2">
                         <Label htmlFor="prospect" value="Prospect"/>

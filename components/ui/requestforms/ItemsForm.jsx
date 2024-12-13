@@ -4,6 +4,7 @@ import {Label, Table, TextInput, Select} from "flowbite-react";
 import SearchInput from "@/components/searchinput/SearchInput";
 import {textInputTheme} from "@/components/ui/requestforms/textInputTheme";
 import Button from "@/components/button/Button";
+import Heading from "@/components/heading/Heading";
 
 const selectTheme = {
     'field': {
@@ -49,8 +50,8 @@ const ItemsForm = ({className = '', index = 0}) => {
             <form className={`${className} gap-4`}
                   onSubmit={handleSubmit}>
                 <div>
-                    <div className="mb-2">
-                        <Label htmlFor="items" value="Items"/>
+                    <div className="mb-6">
+                        <Heading level={'l3'} color={'secondary'}>Add Items</Heading>
                     </div>
                     <SearchInput customTheme={textInputTheme} action={setItems} items={items}/>
                 </div>
@@ -122,6 +123,7 @@ const ItemsForm = ({className = '', index = 0}) => {
                                                     }));
                                                 }} color={'gray'} theme={selectTheme}
                                                         defaultValue={item.packing || null}>
+                                                    <option>Choose</option>
                                                     <option>Bulk</option>
                                                     <option>Big-Bags</option>
                                                     <option>Pallet</option>

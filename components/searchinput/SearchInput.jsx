@@ -42,7 +42,7 @@ const SearchInput = ({customTheme, action, items}) => {
 
     return (
         <div className="search-input relative">
-            <TextInput type={'search'} placeholder={'Search...'} icon={HiSearch} theme={customTheme}
+            <TextInput type={'search'} placeholder={'Search items...'} icon={HiSearch} theme={customTheme}
                        onChange={handleChange} name={'items'}/>
 
             {suggestions && suggestions.length > 0 && (
@@ -50,7 +50,7 @@ const SearchInput = ({customTheme, action, items}) => {
                     className="absolute left-0 w-full bg-white border border-gray-200 rounded-md p-2 shadow-sm z-50 mt-2.5 dark:bg-gray-800 dark:border-gray-600" ref={dropdownRef}>
                     <ul className={'divide-y dark:divide-gray-600'}>
                         {suggestions.slice(0, 5).map((item, index) => (
-                            <li className={'text-sm py-2.5 ps-2 hover:bg-gray-100 rounded-sm text-tertiary cursor-pointer dark:text-gray-400 dark:hover:bg-gray-600 outline-primary  focus:ring-1 focus:ring-primary'}
+                            <li className={'text-base py-2.5 ps-2 hover:bg-gray-100 rounded-sm text-tertiary cursor-pointer dark:text-gray-400 dark:hover:bg-gray-600 outline-primary  focus:ring-1 focus:ring-primary'}
                                 onKeyDown={(event) => {
                                     handleKeyDown(event, item);
                                 }}

@@ -3,7 +3,7 @@ import "./globals.css";
 
 
 export const metadata = {
-  title: "Eco Saas",
+  title: "Logistix",
   description: "Software as a Service App",
 };
 

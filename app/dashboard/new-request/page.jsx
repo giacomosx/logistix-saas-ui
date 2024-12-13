@@ -10,6 +10,7 @@ const Page = () => {
             <RequestForms>
                 <RequestForms.Prospect index={0} />
                 <RequestForms.Items index={1} />
+                <RequestForms.Review index={2} />
             </RequestForms>
         </div>
     );

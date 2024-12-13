@@ -42,7 +42,7 @@ This repository contains the source code for the **frontend** of a multi-tenant 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/<frontend-repo-name>.git
+   git clone https://github.com/giacomosx/logistix-saas-ui.git
    cd <frontend-repo-name>
    ```
 
