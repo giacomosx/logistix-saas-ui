@@ -3,19 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #EE5411;
+  --primary-hover: rgba(238, 84, 17, 0.85);
+  --black: #111827;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  .text-secondary {
+    @apply text-gray-900
+  }
+  .text-tertiary {
+    @apply text-gray-700
+  }
+  body {
+    @apply bg-gray-50
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .page {
+    @apply py-8;
+  }
 }

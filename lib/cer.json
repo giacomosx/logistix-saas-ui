@@ -1,0 +1,118 @@
+[
+    {
+        "cer": "150101",
+        "description": "Imballaggi in carta e cartone"
+    },
+    {
+        "cer": "150102",
+        "description": "Imballaggi in plastica"
+    },
+    {
+        "cer": "150103",
+        "description": "Imballaggi in legno"
+    },
+    {
+        "cer": "150104",
+        "description": "Imballaggi metallici"
+    },
+    {
+        "cer": "150105",
+        "description": "Imballaggi composti"
+    },
+    {
+        "cer": "150106",
+        "description": "Imballaggi in materiali misti"
+    },
+    {
+        "cer": "150107",
+        "description": "Imballaggi in vetro"
+    },
+    {
+        "cer": "150109",
+        "description": "Imballaggi in tessuto"
+    },
+    {
+        "cer": "170101",
+        "description": "Calcestruzzo"
+    },
+    {
+        "cer": "170102",
+        "description": "Mattoni"
+    },
+    {
+        "cer": "170103",
+        "description": "Mattonelle e ceramiche"
+    },
+    {
+        "cer": "170201",
+        "description": "Legno da costruzione e demolizione"
+    },
+    {
+        "cer": "170202",
+        "description": "Vetro da costruzione e demolizione"
+    },
+    {
+        "cer": "170203",
+        "description": "Plastica da costruzione e demolizione"
+    },
+    {
+        "cer": "170301",
+        "description": "Miscele bituminose, non contenenti catrame di carbone"
+    },
+    {
+        "cer": "170401",
+        "description": "Rame, bronzo, ottone"
+    },
+    {
+        "cer": "170402",
+        "description": "Alluminio"
+    },
+    {
+        "cer": "170403",
+        "description": "Piombo"
+    },
+    {
+        "cer": "170404",
+        "description": "Zinco"
+    },
+    {
+        "cer": "170405",
+        "description": "Ferro e acciaio"
+    },
+    {
+        "cer": "170406",
+        "description": "Stagno"
+    },
+    {
+        "cer": "170407",
+        "description": "Metalli misti"
+    },
+    {
+        "cer": "200101",
+        "description": "Carta e cartone"
+    },
+    {
+        "cer": "200102",
+        "description": "Vetro"
+    },
+    {
+        "cer": "200103",
+        "description": "Residui biodegradabili da cucine e mense"
+    },
+    {
+        "cer": "200201",
+        "description": "Residui da giardinaggio e parchi"
+    },
+    {
+        "cer": "200301",
+        "description": "Rifiuti urbani non differenziati"
+    },
+    {
+        "cer": "200302",
+        "description": "Residui di mercato"
+    },
+    {
+        "cer": "200303",
+        "description": "Residui della pulizia stradale"
+    }
+]
