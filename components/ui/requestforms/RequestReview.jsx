@@ -1,11 +1,11 @@
-import React from 'react';
+import React, from 'react';
 import {useRequestContext} from "@/components/ui/requestforms/RequestContext";
 import Button from "@/components/button/Button";
 import {Table} from "flowbite-react";
 import Heading from "@/components/heading/Heading";
 
 const RequestReview = ({className = '', index = 0}) => {
-    const {activeIndex, setActiveIndex, value} = useRequestContext()
+    const {activeIndex, setActiveIndex, value, isPending, error} = useRequestContext()
 
     const handleBack = () => {
         setActiveIndex(activeIndex - 1);
@@ -14,30 +14,30 @@ const RequestReview = ({className = '', index = 0}) => {
     return (
         activeIndex === index && (
             <div className={`${className} flex flex-col gap-8`}>
-                <Heading level={'l3'} color={'secondary'}>Review Details</Heading>
+                <Heading level={'l4'} color={'secondary'}>Review Details</Heading>
                 <dl className="w-full text-secondary dark:text-white grid gap-4 md:grid-cols-2">
                     <div className="flex flex-col border-b dark:border-gray-600">
                         <dt className="mb-1 text-tertiary dark:text-gray-400">Prospect</dt>
-                        <dd className="font-semibold">{value.prospect}</dd>
+                        <dd className="font-semibold">{value?.prospect}</dd>
                     </div>
                     <div className="flex flex-col border-b dark:border-gray-600 ">
                         <dt className="mb-1 text-tertiary dark:text-gray-400">Local Unit</dt>
-                        <dd className="font-semibold">{value.localUnit}</dd>
+                        <dd className="font-semibold">{value?.localUnit}</dd>
                     </div>
                     <div className="flex flex-col border-b dark:border-gray-600 ">
                         <dt className="mb-1 text-tertiary dark:text-gray-400">Referent Name</dt>
-                        <dd className="font-semibold">{value.referentName}</dd>
+                        <dd className="font-semibold">{value?.referentName}</dd>
                     </div>
                     <div className="flex flex-col border-b dark:border-gray-600">
                         <dt className="mb-1 text-tertiary dark:text-gray-400">Referent Mail</dt>
-                        <dd className="font-semibold">{value.referentMail}</dd>
+                        <dd className="font-semibold">{value?.referentMail}</dd>
                     </div>
                     <div className="flex flex-col ">
                         <dt className="mb-1 text-tertiary dark:text-gray-400">Referent Phone</dt>
-                        <dd className="font-semibold">{value.referentPhone}</dd>
+                        <dd className="font-semibold">{value?.referentPhone}</dd>
                     </div>
                 </dl>
-                {value.items.length > 0 && (
+                {value?.items.length > 0 && (
                     <div className="overflow-x-auto">
                         <Table hoverable>
                             <Table.Head>
@@ -60,9 +60,16 @@ const RequestReview = ({className = '', index = 0}) => {
                         </Table>
                     </div>
                 )}
-                <div className="flex justify-between border-t pt-8 w-full dark:border-gray-700">
-                    <Button size={'md'} onClick={handleBack} variant={'outline'}>Back</Button>
-                    <Button size={'md'} type={'button'}>Add</Button>
+                <div className={`flex ${isPending ? 'justify-end' : 'justify-between'} border-t pt-8 w-full dark:border-gray-700`}>
+                    {isPending && !error ? (
+                        <span
+                            className={'inline-block h-8 w-8 border-2 border-primary dark:border-orange-600 border-b-transparent animate-spin rounded-full'}></span>
+                    ) : (
+                        <>
+                            <Button size={'md'} onClick={handleBack} variant={'outline'}>Back</Button>
+                            <Button size={'md'} type={'submit'}>Add</Button>
+                        </>
+                    )}
                 </div>
             </div>
         )

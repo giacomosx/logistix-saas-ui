@@ -1,9 +1,12 @@
 import React from 'react';
+import Section from "@/components/section/Section";
 
 const Page = () => {
     return (
-        <div>
-          About
+        <div className="page">
+            <Section>
+                About
+            </Section>
         </div>
     );
 };

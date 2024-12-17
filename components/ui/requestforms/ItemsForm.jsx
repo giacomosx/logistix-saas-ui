@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useRequestContext} from "@/components/ui/requestforms/RequestContext";
-import {Label, Table, TextInput, Select} from "flowbite-react";
+import { Table, TextInput, Select} from "flowbite-react";
 import SearchInput from "@/components/searchinput/SearchInput";
 import {textInputTheme} from "@/components/ui/requestforms/textInputTheme";
 import Button from "@/components/button/Button";
@@ -16,7 +16,7 @@ const selectTheme = {
     }
 }
 
-const ItemsForm = ({className = '', index = 0}) => {
+const ItemsForm = ({index = 0}) => {
     const {activeIndex, setActiveIndex, value, setValue} = useRequestContext();
     const [items, setItems] = useState(value?.items || []);
 
@@ -31,8 +31,7 @@ const ItemsForm = ({className = '', index = 0}) => {
     };
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         setValue(prev => ({
             ...prev,
             items
@@ -47,11 +46,10 @@ const ItemsForm = ({className = '', index = 0}) => {
 
     return (
         activeIndex === index && (
-            <form className={`${className} gap-4`}
-                  onSubmit={handleSubmit}>
+            <>
                 <div>
                     <div className="mb-6">
-                        <Heading level={'l3'} color={'secondary'}>Add Items</Heading>
+                        <Heading level={'l4'} color={'secondary'}>Add Items</Heading>
                     </div>
                     <SearchInput customTheme={textInputTheme} action={setItems} items={items}/>
                 </div>
@@ -144,9 +142,9 @@ const ItemsForm = ({className = '', index = 0}) => {
                 </div>
                 <div className="flex justify-between border-t mt-4 pt-8 w-full dark:border-gray-700">
                     <Button size={'md'} onClick={handleBack} variant={'outline'}>Back</Button>
-                    <Button size={'md'} type={'submit'}>Next</Button>
+                    <Button size={'md'} type={'button'} onClick={handleSubmit}>Next</Button>
                 </div>
-            </form>
+            </>
         )
     );
 };

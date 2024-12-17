@@ -23,8 +23,7 @@ const ProspectForm = ({className = '', index = 0}) => {
         });
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         setActiveIndex(activeIndex + 1);
         setValue(prospect);
     }
@@ -35,10 +34,10 @@ const ProspectForm = ({className = '', index = 0}) => {
 
     return (
         activeIndex === index && (
-            <form
-                className={`${className} flex flex-col md:grid gap-4 grid-cols-2  `} onSubmit={handleSubmit}>
+            <div
+                className={`${className} flex flex-col md:grid gap-4 grid-cols-2  `}>
                 <div className="mb-2 col-span-2">
-                    <Heading level={'l3'} color={'secondary'}>New Request</Heading>
+                    <Heading level={'l4'} color={'secondary'}>New Request</Heading>
                 </div>
                 <div>
                     <div className="mb-2">
@@ -81,9 +80,9 @@ const ProspectForm = ({className = '', index = 0}) => {
                                onChange={handleChange} defaultValue={value?.referentPhone || null}/>
                 </div>
                 <div className="flex justify-end border-t mt-4 pt-8 w-full dark:border-gray-700 col-span-2">
-                    <Button size={'md'} type={'submit'}>Next</Button>
+                    <Button size={'md'} type={'button'} onClick={handleSubmit}>Next</Button>
                 </div>
-            </form>
+            </div>
         )
     )
 };

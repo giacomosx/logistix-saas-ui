@@ -1,11 +1,14 @@
 import React from 'react';
+import Section from "@/components/section/Section";
 
-const Page = () => {
+const Services = () => {
     return (
-        <div>
-          services
-        </div>
+       <div className="page">
+           <Section>
+               Services
+           </Section>
+       </div>
     );
 };
 
-export default Page;
+export default Services;

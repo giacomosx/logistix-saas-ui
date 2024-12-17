@@ -27,7 +27,18 @@ const useLocalStorage = (key, initialValue) => {
         }
     };
 
-    return [state, setValue];
+    const removeItem = () => {
+        try {
+            if (typeof window !== 'undefined') {
+                window.localStorage.removeItem(key);
+                setState(null);
+            }
+        } catch (error) {
+            console.error('Error deleting item from localStorage:', error);
+        }
+    };
+
+    return [state, setValue, removeItem];
 };
 
 export default useLocalStorage;

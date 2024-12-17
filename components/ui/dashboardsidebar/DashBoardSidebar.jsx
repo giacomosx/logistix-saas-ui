@@ -2,7 +2,7 @@
 
 import {customTheme} from "./theme";
 import {Drawer, Sidebar } from "flowbite-react";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {
     HiChartPie,
     HiClipboard,
@@ -13,11 +13,19 @@ import {
     HiShoppingBag,
     HiUsers,
 } from "react-icons/hi";
+import {useWindowSize} from "@/hooks/useWindowSize";
 
 export function DashboardSidebar() {
-    const [isOpen, setIsOpen] = useState(true);
+    const windowSize = useWindowSize();
+    const isMobile = windowSize < 1024;
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleClose = () => setIsOpen(false);
+
+    useEffect(() => {
+        setIsOpen(!isMobile);
+    }, [isMobile]);
+
 
     return (
         <>

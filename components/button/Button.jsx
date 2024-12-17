@@ -14,13 +14,13 @@ const sizes = {
     "xl": "px-6 py-3 text-base"
 }
 
-const Button = ({children, variant, className = '', size, onClick, type}) => {
+const Button = ({children, variant, className = '', size, onClick, type, formAction}) => {
     const baseStyle = 'rounded flex items-stretch justify-center p-0.5 text-center font-medium transition-all focus:z-10 focus:outline-none'
     const variantStyle = variants[variant] || variants.primary
     const variantSize = sizes[size] || sizes.xs
 
     return (
-        <button className={`${variantSize} ${baseStyle} ${variantStyle} ${className}`} onClick={onClick} type={type || 'button'}>
+        <button className={`${variantSize} ${baseStyle} ${variantStyle} ${className}`} onClick={onClick} type={type || 'button'} formAction={formAction}>
             {children}
         </button>
     );

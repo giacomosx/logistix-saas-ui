@@ -1,19 +1,14 @@
-'use client'
+import Section from "@/components/section/Section";
+import NewRequestStepper from "@/components/ui/newrequeststepper/NewRequestStepper";
 
-import React from 'react';
-import RequestForms from "@/components/ui/requestforms";
-
-
-const Page = () => {
+const NewRequest = () => {
     return (
         <div className="page">
-            <RequestForms>
-                <RequestForms.Prospect index={0} />
-                <RequestForms.Items index={1} />
-                <RequestForms.Review index={2} />
-            </RequestForms>
+            <Section>
+                <NewRequestStepper />
+            </Section>
         </div>
     );
 };
 
-export default Page;
+export default NewRequest;
