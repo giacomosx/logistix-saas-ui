@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from "react";
-import {useRequestContext} from "@/components/ui/requestforms/RequestContext";
-import {textInputTheme} from "@/components/ui/requestforms/textInputTheme";
+import {useRequestContext} from "./RequestContext";
+import {textInputTheme} from "./textInputTheme";
 import {Label, TextInput} from "flowbite-react";
 import Button from "@/components/button/Button";
 import {
@@ -11,12 +11,16 @@ import {
     HiPhone,
 } from "react-icons/hi";
 import Heading from "@/components/heading/Heading";
+import {RequestSchema} from "@/utils/zod-schemas/RequestSchemas";
+import {HelperToolTip} from "@/components/helpertooltip/HelperToolTip";
 
 const ProspectForm = ({className = '', index = 0}) => {
     const {activeIndex, setActiveIndex, value, setValue} = useRequestContext();
     const [prospect, setProspect] = useState({});
+    const [error, setError] = useState(false);
 
     const handleChange = (e) => {
+        setError(null);
         setProspect({
             ...prospect,
             [e.target.name]: e.target.value
@@ -24,6 +28,13 @@ const ProspectForm = ({className = '', index = 0}) => {
     }
 
     const handleSubmit = () => {
+        const result = RequestSchema.safeParse(prospect);
+
+        if (!result.success) {
+            setError(true);
+            return
+        }
+
         setActiveIndex(activeIndex + 1);
         setValue(prospect);
     }
@@ -32,12 +43,14 @@ const ProspectForm = ({className = '', index = 0}) => {
         setProspect(value || {});
     }, [value]);
 
+
     return (
         activeIndex === index && (
             <div
                 className={`${className} flex flex-col md:grid gap-4 grid-cols-2  `}>
-                <div className="mb-2 col-span-2">
+                <div className="mb-2 col-span-2 md:flex md:justify-between relative">
                     <Heading level={'l4'} color={'secondary'}>New Request</Heading>
+                    {error && <HelperToolTip className={'right-0 md:absolute'} setError={setError} />}
                 </div>
                 <div>
                     <div className="mb-2">
@@ -45,7 +58,7 @@ const ProspectForm = ({className = '', index = 0}) => {
                     </div>
                     <TextInput theme={textInputTheme} id="prospect" type="text" placeholder="Acme Spa" required
                                icon={HiOfficeBuilding} name="prospect" onChange={handleChange}
-                               defaultValue={value?.prospect || null}/>
+                               defaultValue={value?.prospect || null} />
                 </div>
                 <div>
                     <div className="mb-2">
@@ -59,7 +72,7 @@ const ProspectForm = ({className = '', index = 0}) => {
                     <div className="mb-2">
                         <Label htmlFor="referentName" value="Referent name"/>
                     </div>
-                    <TextInput theme={textInputTheme} id="referentName" type="text" required placeholder="Jhon Snow"
+                    <TextInput theme={textInputTheme} id="referentName" type="text" placeholder="Jhon Snow"
                                icon={HiUser} name="referentName" onChange={handleChange}
                                defaultValue={value?.referentName || null}/>
                 </div>
@@ -67,7 +80,7 @@ const ProspectForm = ({className = '', index = 0}) => {
                     <div className="mb-2">
                         <Label htmlFor="referentMail" value="Referent mail"/>
                     </div>
-                    <TextInput theme={textInputTheme} id="referentMail" type="email" required
+                    <TextInput theme={textInputTheme} id="referentMail" type="email"
                                placeholder="jhonsnow@gmail.com" icon={HiMail} name="referentMail"
                                onChange={handleChange} defaultValue={value?.referentMail || null}/>
                 </div>
@@ -80,7 +93,7 @@ const ProspectForm = ({className = '', index = 0}) => {
                                onChange={handleChange} defaultValue={value?.referentPhone || null}/>
                 </div>
                 <div className="flex justify-end border-t mt-4 pt-8 w-full dark:border-gray-700 col-span-2">
-                    <Button size={'md'} type={'button'} onClick={handleSubmit}>Next</Button>
+                    <Button size={'md'} type={'button'} onClick={handleSubmit} >Next</Button>
                 </div>
             </div>
         )

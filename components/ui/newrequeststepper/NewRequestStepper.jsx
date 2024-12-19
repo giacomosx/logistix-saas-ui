@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useEffect, useState} from 'react';
-import RequestForms from "@/components/ui/requestforms";
+import RequestForms from "./requestforms";
 import LoadingSpinner from "@/components/loadingspinner/LoadingSpinner";
 
 const NewRequestStepper = () => {

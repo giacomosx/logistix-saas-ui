@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {useRequestContext} from "@/components/ui/requestforms/RequestContext";
+import {useRequestContext} from "./RequestContext";
 import { Table, TextInput, Select} from "flowbite-react";
 import SearchInput from "@/components/searchinput/SearchInput";
-import {textInputTheme} from "@/components/ui/requestforms/textInputTheme";
+import {textInputTheme} from "./textInputTheme";
 import Button from "@/components/button/Button";
 import Heading from "@/components/heading/Heading";
 
@@ -29,7 +29,6 @@ const ItemsForm = ({index = 0}) => {
         setItems(updatedItems);
         setValue(prev => ({...prev, items: updatedItems}));
     };
-
 
     const handleSubmit = () => {
         setValue(prev => ({
@@ -142,7 +141,7 @@ const ItemsForm = ({index = 0}) => {
                 </div>
                 <div className="flex justify-between border-t mt-4 pt-8 w-full dark:border-gray-700">
                     <Button size={'md'} onClick={handleBack} variant={'outline'}>Back</Button>
-                    <Button size={'md'} type={'button'} onClick={handleSubmit}>Next</Button>
+                    <Button size={'md'} type={'button'} onClick={handleSubmit} >Next</Button>
                 </div>
             </>
         )

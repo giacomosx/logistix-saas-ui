@@ -1,11 +1,17 @@
 'use client'
 
-import React, from 'react';
-import {useRequestContext} from "@/components/ui/requestforms/RequestContext";
+import React, {useState} from 'react';
+import {useRequestContext} from "./RequestContext";
 import Button from "@/components/button/Button";
 import {Label, Table, Textarea} from "flowbite-react";
 import Heading from "@/components/heading/Heading";
 import LoadingSpinner from "@/components/loadingspinner/LoadingSpinner";
+
+const textAreaTheme = {
+    "colors": {
+        "gray": "outline-none border-gray-300 bg-gray-50 text-gray-900 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary dark:focus:ring-orange-500",
+    }
+}
 
 const RequestReview = ({className = '', index = 0}) => {
     const {activeIndex, setActiveIndex, value, isPending, error, setValue} = useRequestContext()
@@ -73,18 +79,18 @@ const RequestReview = ({className = '', index = 0}) => {
                 )}
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="note" value="Note about the request" />
+                        <Label htmlFor="note" value="Note about the request"/>
                     </div>
-                    <Textarea placeholder="Type a note..." required rows={4} name="note" onChange={handleInputChange} />
+                    <Textarea theme={textAreaTheme} placeholder="Type a note..." required rows={4} name="note" onChange={handleInputChange}/>
                 </div>
                 <div
                     className={`flex ${isPending ? 'justify-end' : 'justify-between'} border-t pt-8 w-full dark:border-gray-700`}>
                     {isPending && !error ? (
-                        <LoadingSpinner />
+                        <LoadingSpinner/>
                     ) : (
                         <>
                             <Button size={'md'} onClick={handleBack} variant={'outline'}>Back</Button>
-                            <Button size={'md'} type={'submit'}>Add</Button>
+                            <Button size={'md'} type={'submit'} >Add</Button>
                         </>
                     )}
                 </div>

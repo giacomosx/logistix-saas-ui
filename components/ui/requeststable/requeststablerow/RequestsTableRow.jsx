@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import {Table} from "flowbite-react";
 import AxiosApi from "@/utils/axiosApi";
 import LoadingSpinner from "@/components/loadingspinner/LoadingSpinner";
-import {changeStatusRequest} from "@/app/dashboard/api/services";
+import {changeStatusRequest} from "@/app/dashboard/api/quote-requests/services";
 
 
 const colorVariants = {

@@ -2,8 +2,8 @@
 
 import React, {useState} from 'react';
 import useLocalStorage from "@/hooks/useLocalStorage";
-import {RequestProvider} from "@/components/ui/requestforms/RequestContext";
-import {addNewRequest} from "@/app/dashboard/api/services";
+import {RequestProvider} from "./RequestContext";
+import {addNewRequest} from "@/app/dashboard/api/quote-requests/services";
 
 function RequestForms({children, defaultIndex = 0}) {
     const [activeIndex, setActiveIndex] = useState(defaultIndex);
