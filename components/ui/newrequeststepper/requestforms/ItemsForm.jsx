@@ -5,6 +5,7 @@ import SearchInput from "@/components/searchinput/SearchInput";
 import {textInputTheme} from "./textInputTheme";
 import Button from "@/components/button/Button";
 import Heading from "@/components/heading/Heading";
+import {HelperToolTip} from "@/components/helpertooltip/HelperToolTip";
 
 const selectTheme = {
     'field': {
@@ -19,6 +20,7 @@ const selectTheme = {
 const ItemsForm = ({index = 0}) => {
     const {activeIndex, setActiveIndex, value, setValue} = useRequestContext();
     const [items, setItems] = useState(value?.items || []);
+    const [error, setError] = useState(null);
 
     const handleBack = () => {
         setActiveIndex(activeIndex - 1);
@@ -31,6 +33,10 @@ const ItemsForm = ({index = 0}) => {
     };
 
     const handleSubmit = () => {
+        if (items.length <= 0) {
+            setError(true);
+            return
+        }
         setValue(prev => ({
             ...prev,
             items
@@ -47,8 +53,9 @@ const ItemsForm = ({index = 0}) => {
         activeIndex === index && (
             <>
                 <div>
-                    <div className="mb-6">
+                    <div className="mb-6 relative ">
                         <Heading level={'l4'} color={'secondary'}>Add Items</Heading>
+                        {error && <HelperToolTip className={'right-0 top-0 md:absolute z-50'} setError={setError} text={'Insert at least one item!'}/>}
                     </div>
                     <SearchInput customTheme={textInputTheme} action={setItems} items={items}/>
                 </div>
