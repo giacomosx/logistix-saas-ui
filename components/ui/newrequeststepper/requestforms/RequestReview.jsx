@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState} from 'react';
+import React from 'react';
 import {useRequestContext} from "./RequestContext";
 import Button from "@/components/button/Button";
 import {Label, Table, Textarea} from "flowbite-react";
@@ -30,7 +30,7 @@ const RequestReview = ({className = '', index = 0}) => {
 
     return (
         activeIndex === index && (
-            <div className={`${className} flex flex-col gap-8`}>
+            <div className={`${className} flex flex-col gap-8 relative`}>
                 <Heading level={'l4'} color={'secondary'}>Review Details</Heading>
                 <dl className="w-full text-secondary dark:text-white grid gap-4 md:grid-cols-2">
                     <div className="flex flex-col border-b dark:border-gray-600">

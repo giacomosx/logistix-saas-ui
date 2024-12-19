@@ -4,12 +4,14 @@ import React, {useState} from 'react';
 import useLocalStorage from "@/hooks/useLocalStorage";
 import {RequestProvider} from "./RequestContext";
 import {addNewRequest} from "@/app/dashboard/api/quote-requests/services";
+import {HelperToolTip} from "@/components/helpertooltip/HelperToolTip";
 
 function RequestForms({children, defaultIndex = 0}) {
     const [activeIndex, setActiveIndex] = useState(defaultIndex);
     const [value, setValue, removeItem] = useLocalStorage("requestInfo", null);
     const [isPending, setIsPending] = useState(null);
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(true);
 
     const contextValue = {
         activeIndex,
@@ -29,7 +31,7 @@ function RequestForms({children, defaultIndex = 0}) {
             if(error) console.error(error);
             if (ok) {
                 removeItem('requestInfo');
-                setActiveIndex(0);
+                setSuccess(true);
             }
         } catch (error) {
             console.error(error);
@@ -41,7 +43,10 @@ function RequestForms({children, defaultIndex = 0}) {
 
     return (
         <RequestProvider value={contextValue}>
-                <form className="gap-4" onSubmit={handleSubmit}>
+                <form className="gap-4 relative" onSubmit={handleSubmit}>
+                    {success && (
+                        <HelperToolTip className={'absolute right-0 top-0 z-50'} setAction={setSuccess} type={'success'} text={'Request successfully added!'} />
+                    )}
                     {children}
                 </form>
         </RequestProvider>

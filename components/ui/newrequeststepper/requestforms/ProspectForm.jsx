@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState} from "react";
 import {useRequestContext} from "./RequestContext";
 import {textInputTheme} from "./textInputTheme";
@@ -43,6 +45,7 @@ const ProspectForm = ({className = '', index = 0}) => {
         setProspect(value || {});
     }, [value]);
 
+    console.log(error)
 
     return (
         activeIndex === index && (
@@ -50,7 +53,7 @@ const ProspectForm = ({className = '', index = 0}) => {
                 className={`${className} flex flex-col md:grid gap-4 grid-cols-2  `}>
                 <div className="mb-2 col-span-2 md:flex md:justify-between relative">
                     <Heading level={'l4'} color={'secondary'}>New Request</Heading>
-                    {error && <HelperToolTip className={'right-0 md:absolute'} setError={setError} />}
+                    {error && (<HelperToolTip className={'right-0 md:absolute'} setAction={setError}/>)}
                 </div>
                 <div>
                     <div className="mb-2">

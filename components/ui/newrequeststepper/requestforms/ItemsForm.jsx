@@ -55,7 +55,7 @@ const ItemsForm = ({index = 0}) => {
                 <div>
                     <div className="mb-6 relative ">
                         <Heading level={'l4'} color={'secondary'}>Add Items</Heading>
-                        {error && <HelperToolTip className={'right-0 top-0 md:absolute z-50'} setError={setError} text={'Insert at least one item!'}/>}
+                        {error && <HelperToolTip className={'right-0 top-0 md:absolute z-50'} setAction={setError} text={'Insert at least one item!'}/>}
                     </div>
                     <SearchInput customTheme={textInputTheme} action={setItems} items={items}/>
                 </div>
