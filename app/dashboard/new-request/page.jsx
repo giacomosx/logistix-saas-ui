@@ -1,5 +1,5 @@
 import Section from "@/components/section/Section";
-import NewRequestStepper from "@/components/ui/newrequeststepper/NewRequestStepper";
+import NewRequestStepper from "@/components/ui/requestforms/newrequeststepper/NewRequestStepper";
 
 const NewRequest = () => {
     return (

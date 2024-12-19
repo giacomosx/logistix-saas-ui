@@ -1,14 +1,25 @@
+'use client'
+
 import React, from 'react';
 import {useRequestContext} from "@/components/ui/requestforms/RequestContext";
 import Button from "@/components/button/Button";
-import {Table} from "flowbite-react";
+import {Label, Table, Textarea} from "flowbite-react";
 import Heading from "@/components/heading/Heading";
+import LoadingSpinner from "@/components/loadingspinner/LoadingSpinner";
 
 const RequestReview = ({className = '', index = 0}) => {
-    const {activeIndex, setActiveIndex, value, isPending, error} = useRequestContext()
+    const {activeIndex, setActiveIndex, value, isPending, error, setValue} = useRequestContext()
 
     const handleBack = () => {
         setActiveIndex(activeIndex - 1);
+    }
+
+    const handleInputChange = (e) => {
+        e.preventDefault();
+        setValue({
+            ...value,
+            [e.target.name]: e.target.value,
+        });
     }
 
     return (
@@ -60,10 +71,16 @@ const RequestReview = ({className = '', index = 0}) => {
                         </Table>
                     </div>
                 )}
-                <div className={`flex ${isPending ? 'justify-end' : 'justify-between'} border-t pt-8 w-full dark:border-gray-700`}>
+                <div>
+                    <div className="mb-2 block">
+                        <Label htmlFor="note" value="Note about the request" />
+                    </div>
+                    <Textarea placeholder="Type a note..." required rows={4} name="note" onChange={handleInputChange} />
+                </div>
+                <div
+                    className={`flex ${isPending ? 'justify-end' : 'justify-between'} border-t pt-8 w-full dark:border-gray-700`}>
                     {isPending && !error ? (
-                        <span
-                            className={'inline-block h-8 w-8 border-2 border-primary dark:border-orange-600 border-b-transparent animate-spin rounded-full'}></span>
+                        <LoadingSpinner />
                     ) : (
                         <>
                             <Button size={'md'} onClick={handleBack} variant={'outline'}>Back</Button>

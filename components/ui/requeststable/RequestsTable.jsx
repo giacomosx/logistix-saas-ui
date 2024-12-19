@@ -1,25 +1,48 @@
+"use client";
+
 import {Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow} from "flowbite-react";
-import AxiosApi from '@/utils/axiosApi'
+import AxiosApi from '@/utils/axiosApi';
+import RequestsTableRow from "@/components/ui/requeststable/requeststablerow/RequestsTableRow";
+import {useEffect, useState} from "react";
+import LoadingSpinner from "@/components/loadingspinner/LoadingSpinner";
 
 const customTables = {
     "root": {
         "base": "w-full text-left text-sm text-gray-500 dark:text-gray-400 ",
-        "shadow": "absolute left-0 top-0 -z-10 h-full w-full rounded-lg bg-gray-50  dark:bg-black",
+        "shadow": "absolute left-0 top-0 -z-10 h-full w-full rounded-lg bg-gray-50 dark:bg-black",
         "wrapper": "relative "
     }
-}
+};
 
-export async function RequestsTable() {
+export function RequestsTable() {
     const api = new AxiosApi();
-    let data = null
-    let error = null
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
 
-    try {
-        const response = await api.get('/rfq')
-        data = await response
-    } catch (e) {
-        console.error(e)
-        error = e.message
+    const getData = async () => {
+        try {
+            const response = await api.get('/rfq');
+            setData(response);
+        } catch (e) {
+            console.error(e);
+            setError(e.message || "An unexpected error occurred");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+
+    if (loading) {
+        return (
+            <div className="w-full text-center">
+                <LoadingSpinner />
+            </div>
+        )
     }
 
     return (
@@ -37,25 +60,15 @@ export async function RequestsTable() {
                 <TableBody className="divide-y">
                     {data && data.length > 0 ? (
                         data.map(item => (
-                            <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800" key={item._id}>
-                                <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                    {item.prospect}
-                                </TableCell>
-                                <TableCell>{new Date(item.createdAt).toLocaleDateString()}</TableCell>
-                                <TableCell>{item.status}</TableCell>
-                                <TableCell>{item.description}</TableCell>
-                                <TableCell>
-                                    <a href="#"
-                                       className="font-medium text-primary hover:underline dark:text-orange-500">
-                                        Edit
-                                    </a>
-                                </TableCell>
-                            </TableRow>
+                            <RequestsTableRow key={item._id} item={item} />
                         ))
-                    ): (
+                    ) : (
                         <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {error ? error || 'Ops an error occurred' : 'No available prospects'}
+                            <TableCell
+                                className="whitespace-nowrap font-medium text-gray-900 dark:text-white"
+                                colSpan={5}
+                            >
+                                {error || "No available prospects"}
                             </TableCell>
                         </TableRow>
                     )}

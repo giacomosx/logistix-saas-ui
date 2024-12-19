@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import useLocalStorage from "@/hooks/useLocalStorage";
 import {RequestProvider} from "@/components/ui/requestforms/RequestContext";
-import {addNewRequest} from "@/app/dashboard/new-request/api/route";
+import {addNewRequest} from "@/app/dashboard/new-request/api/services";
 
 function RequestForms({children, defaultIndex = 0}) {
     const [activeIndex, setActiveIndex] = useState(defaultIndex);
