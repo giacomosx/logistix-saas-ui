@@ -52,9 +52,9 @@ export function RequestsTable() {
                     <TableHeadCell>Prospect</TableHeadCell>
                     <TableHeadCell>Date</TableHeadCell>
                     <TableHeadCell>Status</TableHeadCell>
-                    <TableHeadCell>Description</TableHeadCell>
+                    <TableHeadCell>Note</TableHeadCell>
                     <TableHeadCell>
-                        <span className="sr-only">Edit</span>
+                        <span className="sr-only">View</span>
                     </TableHeadCell>
                 </TableHead>
                 <TableBody className="divide-y">

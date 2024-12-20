@@ -11,7 +11,7 @@ function RequestForms({children, defaultIndex = 0}) {
     const [value, setValue, removeItem] = useLocalStorage("requestInfo", null);
     const [isPending, setIsPending] = useState(null);
     const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(true);
+    const [success, setSuccess] = useState(false);
 
     const contextValue = {
         activeIndex,

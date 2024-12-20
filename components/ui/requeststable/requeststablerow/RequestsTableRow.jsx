@@ -2,9 +2,9 @@
 
 import React, {useState} from 'react';
 import {Table} from "flowbite-react";
-import AxiosApi from "@/utils/axiosApi";
 import LoadingSpinner from "@/components/loadingspinner/LoadingSpinner";
 import {changeStatusRequest} from "@/app/dashboard/api/quote-requests/services";
+import Link from "next/link";
 
 
 const colorVariants = {
@@ -65,10 +65,10 @@ const RequestsTableRow = ({item}) => {
             </Table.Cell>
             <Table.Cell>{item.note || null}</Table.Cell>
             <Table.Cell>
-                <a href="#"
+                <Link href={`/dashboard/quote-requests/${item._id}`}
                    className="font-medium text-primary hover:underline dark:text-orange-500">
-                    Edit
-                </a>
+                    View
+                </Link>
             </Table.Cell>
         </Table.Row>
     );

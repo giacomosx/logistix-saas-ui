@@ -45,7 +45,6 @@ const ProspectForm = ({className = '', index = 0}) => {
         setProspect(value || {});
     }, [value]);
 
-    console.log(error)
 
     return (
         activeIndex === index && (
@@ -57,7 +56,7 @@ const ProspectForm = ({className = '', index = 0}) => {
                 </div>
                 <div>
                     <div className="mb-2">
-                        <Label htmlFor="prospect" value="Prospect"/>
+                        <Label htmlFor="prospect" value="Company Name"/>
                     </div>
                     <TextInput theme={textInputTheme} id="prospect" type="text" placeholder="Acme Spa" required
                                icon={HiOfficeBuilding} name="prospect" onChange={handleChange}
@@ -81,7 +80,7 @@ const ProspectForm = ({className = '', index = 0}) => {
                 </div>
                 <div>
                     <div className="mb-2">
-                        <Label htmlFor="referentMail" value="Referent mail"/>
+                        <Label htmlFor="referentMail" value="Referent e-mail"/>
                     </div>
                     <TextInput theme={textInputTheme} id="referentMail" type="email"
                                placeholder="jhonsnow@gmail.com" icon={HiMail} name="referentMail"

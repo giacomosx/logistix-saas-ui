@@ -68,6 +68,7 @@ const ItemsForm = ({index = 0}) => {
                                     <Table.HeadCell>Description</Table.HeadCell>
                                     <Table.HeadCell>Quantity</Table.HeadCell>
                                     <Table.HeadCell>Packing</Table.HeadCell>
+                                    <Table.HeadCell>Nr.</Table.HeadCell>
                                     <Table.HeadCell>
                                         <span className="sr-only">Remove</span>
                                     </Table.HeadCell>
@@ -132,6 +133,23 @@ const ItemsForm = ({index = 0}) => {
                                                     <option>Big-Bags</option>
                                                     <option>Pallet</option>
                                                 </Select>
+                                            </Table.Cell>
+                                            <Table.Cell className="flex items-center">
+                                                <TextInput theme={textInputTheme} sizing={'sm'} placeholder={'1'}
+                                                           onChange={(e) => {
+                                                               const updatedItems = items.map((el) =>
+                                                                   el.cer === item.cer ? {
+                                                                       ...el,
+                                                                       number: e.target.value
+                                                                   } : el);
+                                                               setItems(updatedItems);
+                                                               setValue(prev => ({
+                                                                   ...prev,
+                                                                   items: updatedItems
+                                                               }));
+                                                           }}
+                                                           name={'number'}
+                                                           defaultValue={item.number || null}/>
                                             </Table.Cell>
                                             <Table.Cell>
                                                 <Button onClick={() => handleItemRemove(item.cer)} variant={'danger'}>
