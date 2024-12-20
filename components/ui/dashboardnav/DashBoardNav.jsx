@@ -5,8 +5,18 @@ import {navbarTheme} from "@/components/ui/dashboardnav/theme";
 import {Avatar, DarkThemeToggle, Dropdown, Navbar} from "flowbite-react";
 import Logo from "@/components/logo/Logo";
 import SearchForm from "@/components/ui/searchform/SearchForm";
+import {createClient} from "@/utils/supabase/client";
+import {redirect} from "next/navigation";
 
 const DashBoardNav = () => {
+    const supaBaseClient = createClient();
+
+    const signOut = async () => {
+        const { error } = await supaBaseClient.auth.signOut();
+        if (!error) {
+            redirect("/login");
+        }
+    }
     return (
         <Navbar fluid theme={navbarTheme}>
             <Navbar.Brand href="/">
@@ -25,7 +35,7 @@ const DashBoardNav = () => {
                     <Dropdown.Item>Settings</Dropdown.Item>
                     <Dropdown.Item>Earnings</Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item>Sign out</Dropdown.Item>
+                    <Dropdown.Item onClick={signOut}>Sign out</Dropdown.Item>
                 </Dropdown>
             </div>
         </Navbar>

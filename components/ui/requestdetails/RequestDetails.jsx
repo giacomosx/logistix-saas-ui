@@ -2,15 +2,8 @@
 
 import React from 'react';
 import Heading from "@/components/heading/Heading";
-import {Label, Table, Textarea} from "flowbite-react";
-import Button from "@/components/button/Button";
+import {Label, Table} from "flowbite-react";
 import StatusBadge from "@/components/statusbadge/StatusBadge";
-
-const textAreaTheme = {
-    "colors": {
-        "gray": "outline-none border-gray-300 bg-gray-50 text-gray-900 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary dark:focus:ring-orange-500",
-    }
-}
 
 
 const RequestDetails = ({data}) => {
@@ -74,13 +67,8 @@ const RequestDetails = ({data}) => {
                     <div className="mb-2 block">
                         <Label htmlFor="note" value="Note about the request"/>
                     </div>
-                    {/*<Textarea theme={textAreaTheme} placeholder="Type a note..." rows={4} name="note"
-                              defaultValue={data?.note}/>*/}
                     <div className={'h-32 overscroll-y-auto p-2.5 border-gray-300 bg-gray-50 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white block w-full rounded border text-sm '}>{data?.note}</div>
                 </div>
-                {/*<div className={`flex border-t pt-8 w-full dark:border-gray-700`}>
-                    <Button size={'md'} type={'submit'}>Save</Button>
-                </div>*/}
             </div>
         </>
     );
