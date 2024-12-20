@@ -4,8 +4,8 @@ import {customTheme} from "./theme";
 import {Drawer, Sidebar } from "flowbite-react";
 import {useEffect, useState} from "react";
 import {
-    HiChartPie,
-    HiInbox,
+    HiChartPie, HiDatabase,
+    HiInbox, HiSearch,
 } from "react-icons/hi";
 
 export function DashboardSidebar() {
@@ -60,9 +60,15 @@ export function DashboardSidebar() {
                                 <Sidebar.Items>
                                     <Sidebar.ItemGroup>
                                         <Sidebar.Item href="/dashboard" icon={HiChartPie}>Dashboard</Sidebar.Item>
-                                        <Sidebar.Collapse icon={HiInbox} label='Quote Requests'>
+                                        <Sidebar.Collapse icon={HiInbox} label='Quote Requests' className={'mt-6'}>
                                             <Sidebar.Item href="/dashboard/quote-requests">All requests</Sidebar.Item>
                                             <Sidebar.Item href="/dashboard/new-request">New requests</Sidebar.Item>
+                                        </Sidebar.Collapse>
+                                    </Sidebar.ItemGroup>
+                                    <Sidebar.ItemGroup>
+                                        <Sidebar.Collapse icon={HiDatabase} label='Products'>
+                                            <Sidebar.Item href="/dashboard/quote-requests">All products</Sidebar.Item>
+                                            <Sidebar.Item href="/dashboard/new-product">New product</Sidebar.Item>
                                         </Sidebar.Collapse>
                                     </Sidebar.ItemGroup>
                                 </Sidebar.Items>
