@@ -67,7 +67,7 @@ export function DashboardSidebar() {
                                     </Sidebar.ItemGroup>
                                     <Sidebar.ItemGroup>
                                         <Sidebar.Collapse icon={HiDatabase} label='Products'>
-                                            <Sidebar.Item href="/dashboard/quote-requests">All products</Sidebar.Item>
+                                            <Sidebar.Item href="/dashboard/products">All products</Sidebar.Item>
                                             <Sidebar.Item href="/dashboard/new-product">New product</Sidebar.Item>
                                         </Sidebar.Collapse>
                                     </Sidebar.ItemGroup>

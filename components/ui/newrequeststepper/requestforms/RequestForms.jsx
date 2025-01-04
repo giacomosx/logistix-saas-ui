@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import useLocalStorage from "@/hooks/useLocalStorage";
 import {RequestProvider} from "./RequestContext";
-import {addNewRequest} from "@/app/dashboard/api/quote-requests/services";
+import {addNewRequest} from "@/app/api/quote-requests/services";
 import {HelperToolTip} from "@/components/helpertooltip/HelperToolTip";
 
 function RequestForms({children, defaultIndex = 0}) {

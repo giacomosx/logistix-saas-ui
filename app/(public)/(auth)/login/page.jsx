@@ -9,6 +9,7 @@ import { Label, TextInput } from "flowbite-react";
 import Heading from "@/components/heading/Heading";
 import Link from "next/link";
 
+
 const LoginPage = () => {
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
@@ -23,14 +24,16 @@ const LoginPage = () => {
         try {
             const response = await login(null, formData);
 
-            console.log(response);
-
             if (response?.error) {
                 setError(response.error);
             }
+
+
         } catch (err) {
             console.error("Error:", err);
-            setError("An error has occurred, try again later.");
+            if (err) {
+                setError(err.message);
+            }
         } finally {
             setIsPending(false);
         }

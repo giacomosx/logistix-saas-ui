@@ -6,7 +6,7 @@ import {HelperToolTip} from "@/components/helpertooltip/HelperToolTip";
 import {Label, TextInput} from "flowbite-react";
 import {textInputTheme} from "@/components/ui/newrequeststepper/requestforms/textInputTheme";
 import Button from "@/components/button/Button";
-import {addNewProduct} from "@/app/dashboard/api/products/services";
+import {addNewProduct} from "@/app/api/products/services";
 import LoadingSpinner from "@/components/loadingspinner/LoadingSpinner";
 
 const NewProductForm = ({className = '', }) => {

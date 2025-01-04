@@ -1,7 +1,8 @@
-import AxiosApi from "@/utils/axiosApi";
+import axiosApi from "@/utils/axiosApi";
+
 
 export const addNewProduct = async (data) => {
-    const api = new AxiosApi()
+    const api = new axiosApi()
 
     if(!data) {
         throw new Error("Main data is missing")
@@ -22,6 +23,26 @@ export const addNewProduct = async (data) => {
     }
 }
 
+export async function getAllProducts(token) {
+    const api = new axiosApi();
+
+    try {
+        const res = await api.get('/product', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+
+        return {
+            ok: true,
+            data: res,
+        }
+    } catch (e) {
+        return e || "An unexpected error occurred"
+    }
+
+}
+
 export const editProduct = async (itemId, value) => {
     const api = new AxiosApi()
 
@@ -30,15 +51,15 @@ export const editProduct = async (itemId, value) => {
     }
 
     try {
-        const res = await api.patch(`/rfq/change-status/${itemId}`, {status : value});
+        const res = await api.patch(`/product/${itemId}`, );
         return {
             ok: true,
             data: res.status,
         }
     } catch (error) {
-        console.error(e.message);
+        console.error(error.message);
         return {
-            error: e.message,
+            error: error.message,
         };
     }
 }

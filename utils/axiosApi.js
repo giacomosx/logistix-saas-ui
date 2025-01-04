@@ -5,22 +5,20 @@ class AxiosApi {
         const baseUrl = process.env.NEXT_PUBLIC_BASE_SERVER_URL;
         this.axiosInstance = axios.create({
             baseURL: baseUrl,
-            headers : {
+            headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            withCredentials: true,
         })
-        this.axiosInstance.interceptors.request.use((config) => {
-            if (typeof window !== "undefined") {
-                const token = localStorage.getItem("token");
-                if (token) {
-                    config.headers.Authorization = 'Bearer ' + token;
-                }
-            }
+        this.axiosInstance.interceptors.request.use(async (config) => {
+
+
             return config;
         }, (error) => {
             return Promise.reject(error);
         })
     }
+
     async get(url, config = {}) {
         try {
             const response = await this.axiosInstance.get(url, {
@@ -32,7 +30,7 @@ class AxiosApi {
             });
             return response.data;
         } catch (e) {
-            return Promise.reject(e.response.data);
+            return Promise.reject(e.message);
         }
     }
 
