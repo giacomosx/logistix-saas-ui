@@ -8,7 +8,7 @@ const RequestDetailsPage = async ({params}) => {
     const api = new AxiosApi()
     const param = (await params).id
     const cookieStore = await cookies();
-    const token = cookieStore.get('access_token')
+    const token = cookieStore.get('token')
     let data = null;
     let error = null;
 
