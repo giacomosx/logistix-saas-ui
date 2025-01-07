@@ -4,15 +4,33 @@ import React, {useEffect, useRef, useState} from 'react';
 import {TextInput} from "flowbite-react";
 import {HiSearch} from "react-icons/hi";
 import cer from '../../lib/cer.json'
+import axiosApi from "@/utils/axiosApi";
+import {useDebouncedCallback} from "use-debounce";
 
 
 const SearchInput = ({customTheme, action, items}) => {
     const [suggestions, setSuggestions] = useState(null);
+    const [input, setInput] = useState(null);
     const dropdownRef = useRef(null);
+    const api = new axiosApi();
 
-    const handleChange = (e) => {
-        if (e.target.value.length >= 3 && e.target.value.trim() !== '') {
-            setSuggestions(cer.filter(item => item.description.toLocaleLowerCase().includes(e.target.value.toLowerCase())));
+    const debounced = useDebouncedCallback(async () => {
+        try {
+            const list = await api.get('/product/search?description=' + input.toLowerCase());
+            if (list.length > 0) {
+                setSuggestions(list);
+            }
+        } catch (error) {
+            setSuggestions(['No results found']);
+        }
+    }, 500)
+
+
+
+    const handleChange = async (e) => {
+        setInput(e.target.value);
+        if (input && input.trim().length >= 3) {
+            debounced();
         } else {
             setSuggestions(null)
         }
@@ -22,7 +40,7 @@ const SearchInput = ({customTheme, action, items}) => {
         if (!suggestions) {return;}
         if (e.key === 'Enter') {
             action([...items, item]);
-            setSuggestions([]);
+            setSuggestions(null);
         }
     }
 
@@ -60,7 +78,7 @@ const SearchInput = ({customTheme, action, items}) => {
                                 action([...items, item])
                                 setSuggestions(null)
                             }}>
-                                <span className={'text-secondary font-semibold dark:text-gray-300'}>{item.cer}</span>
+                                <span className={'text-secondary font-semibold dark:text-gray-300'}>{item.cod}</span>
                                 <p>
                                     {item.description}
                                 </p>

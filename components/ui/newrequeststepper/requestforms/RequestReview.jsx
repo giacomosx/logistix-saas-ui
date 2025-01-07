@@ -68,7 +68,7 @@ const RequestReview = ({className = '', index = 0}) => {
                                 {value.items.map((item, index) => (
                                     <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
                                         <Table.Cell
-                                            className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{item.cer}</Table.Cell>
+                                            className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{item.cod}</Table.Cell>
                                         <Table.Cell>{item.description}</Table.Cell>
                                         <Table.Cell>{item.qty}&nbsp;Kg</Table.Cell>
                                         <Table.Cell>{item.packing}</Table.Cell>

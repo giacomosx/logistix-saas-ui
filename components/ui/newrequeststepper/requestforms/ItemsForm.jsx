@@ -26,8 +26,8 @@ const ItemsForm = ({index = 0}) => {
         setActiveIndex(activeIndex - 1);
     }
 
-    const handleItemRemove = (cer) => {
-        const updatedItems = items.filter(el => el.cer !== cer);
+    const handleItemRemove = (description) => {
+        const updatedItems = items.filter(el => el.description !== description);
         setItems(updatedItems);
         setValue(prev => ({...prev, items: updatedItems}));
     };
@@ -79,13 +79,13 @@ const ItemsForm = ({index = 0}) => {
                                                    key={index}>
                                             <Table.Cell
                                                 className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                                {item.cer}
+                                                {item.cod}
                                             </Table.Cell>
                                             <Table.Cell>
                                                 <TextInput theme={textInputTheme} sizing={'sm'}
                                                            defaultValue={item.description || null} onChange={(e) => {
                                                     const updatedItems = items.map((el) =>
-                                                        el.cer === item.cer ? {
+                                                        el.description === item.description ? {
                                                             ...el,
                                                             description: e.target.value
                                                         } : el);
@@ -100,7 +100,7 @@ const ItemsForm = ({index = 0}) => {
                                                 <TextInput theme={textInputTheme} sizing={'sm'} placeholder={'100'}
                                                            onChange={(e) => {
                                                                const updatedItems = items.map((el) =>
-                                                                   el.cer === item.cer ? {
+                                                                   el.description === item.description ? {
                                                                        ...el,
                                                                        qty: e.target.value
                                                                    } : el);
@@ -117,7 +117,7 @@ const ItemsForm = ({index = 0}) => {
                                             <Table.Cell>
                                                 <Select required sizing={'sm'} onChange={(e) => {
                                                     const updatedItems = items.map((el) =>
-                                                        el.cer === item.cer ? {
+                                                        el.description === item.description ? {
                                                             ...el,
                                                             packing: e.target.value
                                                         } : el);
@@ -138,7 +138,7 @@ const ItemsForm = ({index = 0}) => {
                                                 <TextInput theme={textInputTheme} sizing={'sm'} placeholder={'1'}
                                                            onChange={(e) => {
                                                                const updatedItems = items.map((el) =>
-                                                                   el.cer === item.cer ? {
+                                                                   el.description === item.description ? {
                                                                        ...el,
                                                                        number: e.target.value
                                                                    } : el);
@@ -152,7 +152,7 @@ const ItemsForm = ({index = 0}) => {
                                                            defaultValue={item.number || null}/>
                                             </Table.Cell>
                                             <Table.Cell>
-                                                <Button onClick={() => handleItemRemove(item.cer)} variant={'danger'}>
+                                                <Button onClick={() => handleItemRemove(item.description)} variant={'danger'}>
                                                     Remove
                                                 </Button>
                                             </Table.Cell>
