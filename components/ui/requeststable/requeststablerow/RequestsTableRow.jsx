@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import {Table} from "flowbite-react";
 import LoadingSpinner from "@/components/loadingspinner/LoadingSpinner";
-import {changeStatusRequest} from "@/app/api/quote-requests/services";
+import {changeStatusRequest} from "@/services/quote-requests/api";
 import Link from "next/link";
 
 

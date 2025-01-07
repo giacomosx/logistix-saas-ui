@@ -23,26 +23,6 @@ export const addNewProduct = async (data) => {
     }
 }
 
-export async function getAllProducts(token) {
-    const api = new axiosApi();
-
-    try {
-        const res = await api.get('/product', {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
-        })
-
-        return {
-            ok: true,
-            data: res,
-        }
-    } catch (e) {
-        return e || "An unexpected error occurred"
-    }
-
-}
-
 export const editProduct = async (itemId, value) => {
     const api = new AxiosApi()
 

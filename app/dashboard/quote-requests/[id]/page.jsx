@@ -2,21 +2,19 @@ import React from 'react';
 import AxiosApi from "@/utils/axiosApi";
 import Section from "@/components/section/Section";
 import RequestDetails from "@/components/ui/requestdetails/RequestDetails";
-import {cookies} from "next/headers";
+import getToken from "@/utils/getToken";
 
 const RequestDetailsPage = async ({params}) => {
     const api = new AxiosApi()
     const param = (await params).id
-    const cookieStore = await cookies();
-    const token = cookieStore.get('token')
+    const token = await getToken();
     let data = null;
     let error = null;
-
 
     try {
         data = await api.get(`/rfq/${param}`, {
             headers: {
-                Authorization: `Bearer ${token.value}`,
+                Authorization: `Bearer ${token}`,
             }
         });
 

@@ -1,8 +1,8 @@
 import {Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow} from "flowbite-react";
 import Link from "next/link";
 import React from "react";
-import {getAllProducts} from "@/app/api/products/services";
-import {cookies} from "next/headers";
+import getToken from "@/utils/getToken";
+import axiosApi from "@/utils/axiosApi";
 
 const customTables = {
     "root": {
@@ -12,14 +12,24 @@ const customTables = {
     }
 };
 
-
-
-
 export async function ProductsTable() {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('token')
+    let data
+    const api = new axiosApi();
+    const token = await getToken();
 
-    const { data } = await getAllProducts(token.value);
+    try {
+        const res = await api.get('/product' ,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+
+        if (res) {
+            data = res;
+        }
+    } catch (e) {
+        return e || "An unexpected error occurred"
+    }
 
 
     return (
