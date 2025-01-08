@@ -12,6 +12,7 @@ import Link from "next/link";
 const SignUpPage = () => {
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
+    const [message, setMessage] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,6 +28,7 @@ const SignUpPage = () => {
                 setError(response.error);
             } else {
                 console.log("Registration successful");
+                setMessage('Check your email address to continue. (check also in your spam folder)');
             }
         } catch (err) {
             console.error("Error:", err);
@@ -65,6 +67,7 @@ const SignUpPage = () => {
                     </Button>
                 </div>
                 {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+                {message && <div className="text-green-500 text-sm mt-2">{message}</div>}
                 <div className="w-full">
                     <span className="text-tertiary text-xs">
                         <Link href="/login" className={'text-primary dark:text-orange-600 hover:underline'}>Log in</Link> if you already have an account

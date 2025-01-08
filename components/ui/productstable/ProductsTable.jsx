@@ -55,7 +55,7 @@ export async function ProductsTable() {
                                 <TableCell>{item.price + ' €' || null}</TableCell>
                                 <TableCell>{item.note || null}</TableCell>
                                 <TableCell>
-                                    <Link href={`/dashboard/all-products/${item._id}`}
+                                    <Link href={`/dashboard/products/${item._id}`}
                                           className="font-medium text-primary hover:underline dark:text-orange-500">
                                         View
                                     </Link>

@@ -26,8 +26,8 @@ const ItemsForm = ({index = 0}) => {
         setActiveIndex(activeIndex - 1);
     }
 
-    const handleItemRemove = (description) => {
-        const updatedItems = items.filter(el => el.description !== description);
+    const handleItemRemove = (desc) => {
+        const updatedItems = items.filter((el) => el.description !== desc);
         setItems(updatedItems);
         setValue(prev => ({...prev, items: updatedItems}));
     };
@@ -84,8 +84,8 @@ const ItemsForm = ({index = 0}) => {
                                             <Table.Cell>
                                                 <TextInput theme={textInputTheme} sizing={'sm'}
                                                            defaultValue={item.description || null} onChange={(e) => {
-                                                    const updatedItems = items.map((el) =>
-                                                        el.description === item.description ? {
+                                                    const updatedItems = items.map((el, idx) =>
+                                                        idx === index ? {
                                                             ...el,
                                                             description: e.target.value
                                                         } : el);
@@ -99,8 +99,8 @@ const ItemsForm = ({index = 0}) => {
                                             <Table.Cell className="flex items-center">
                                                 <TextInput theme={textInputTheme} sizing={'sm'} placeholder={'100'}
                                                            onChange={(e) => {
-                                                               const updatedItems = items.map((el) =>
-                                                                   el.description === item.description ? {
+                                                               const updatedItems = items.map((el, idx) =>
+                                                                   idx === index ? {
                                                                        ...el,
                                                                        qty: e.target.value
                                                                    } : el);
@@ -116,8 +116,8 @@ const ItemsForm = ({index = 0}) => {
                                             </Table.Cell>
                                             <Table.Cell>
                                                 <Select required sizing={'sm'} onChange={(e) => {
-                                                    const updatedItems = items.map((el) =>
-                                                        el.description === item.description ? {
+                                                    const updatedItems = items.map((el, idx) =>
+                                                        idx === index ? {
                                                             ...el,
                                                             packing: e.target.value
                                                         } : el);
@@ -137,8 +137,8 @@ const ItemsForm = ({index = 0}) => {
                                             <Table.Cell className="flex items-center">
                                                 <TextInput theme={textInputTheme} sizing={'sm'} placeholder={'1'}
                                                            onChange={(e) => {
-                                                               const updatedItems = items.map((el) =>
-                                                                   el.description === item.description ? {
+                                                               const updatedItems = items.map((el, idx) =>
+                                                                   idx === index ? {
                                                                        ...el,
                                                                        number: e.target.value
                                                                    } : el);

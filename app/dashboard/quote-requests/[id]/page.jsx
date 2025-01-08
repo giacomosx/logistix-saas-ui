@@ -18,8 +18,6 @@ const RequestDetailsPage = async ({params}) => {
             }
         });
 
-        console.log(data)
-
     } catch (e) {
         console.error(e);
         error = e.message;
