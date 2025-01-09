@@ -1,15 +1,17 @@
 'use client'
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {navbarTheme} from "@/components/ui/dashboardnav/theme";
 import {Avatar, DarkThemeToggle, Dropdown, Navbar} from "flowbite-react";
 import Logo from "@/components/logo/Logo";
 import SearchForm from "@/components/ui/searchform/SearchForm";
 import {createClient} from "@/utils/supabase/client";
 import {redirect} from "next/navigation";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import UserDropdown from "@/components/userdropdown/UserDropdown";
 
-const DashBoardNav = () => {
-    const supaBaseClient = createClient();
+const DashBoardNav = ({user}) => {
+    const supaBaseClient = createClient()
 
     const signOut = async () => {
         const { error } = await supaBaseClient.auth.signOut();
@@ -17,6 +19,7 @@ const DashBoardNav = () => {
             redirect("/login");
         }
     }
+
     return (
         <Navbar fluid theme={navbarTheme}>
             <Navbar.Brand href="/">
@@ -26,17 +29,7 @@ const DashBoardNav = () => {
                 <SearchForm variants={'order-last md:order-none mt-2 md:max-w-md md:mt-0 lg:max-w-xl'} />
             <div className={'flex'}>
                 <DarkThemeToggle />
-                <Dropdown arrowIcon={false} inline label={<Avatar alt="User settings" placeholderInitials={'GB'} img="" rounded />}>
-                    <Dropdown.Header>
-                        <span className="block text-sm">Bonnie Green</span>
-                        <span className="block truncate text-sm font-medium">name@flowbite.com</span>
-                    </Dropdown.Header>
-                    <Dropdown.Item>Dashboard</Dropdown.Item>
-                    <Dropdown.Item>Settings</Dropdown.Item>
-                    <Dropdown.Item>Earnings</Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item onClick={signOut}>Sign out</Dropdown.Item>
-                </Dropdown>
+                <UserDropdown user={user} signOut={signOut} />
             </div>
         </Navbar>
     );

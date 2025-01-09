@@ -1,12 +1,26 @@
 "use client";
 
-import {Navbar, DarkThemeToggle} from "flowbite-react";
+import {Navbar, DarkThemeToggle, Avatar, Dropdown} from "flowbite-react";
 import Logo from "@/components/logo/Logo";
 import {navbarTheme} from "@/components/ui/mainnavbar/theme";
 import Button from "@/components/button/Button";
 import Link from "next/link";
+import React from "react";
+import {createClient} from "@/utils/supabase/client";
+import {redirect} from "next/navigation";
+import UserDropdown from "@/components/userdropdown/UserDropdown";
 
-export function MainNavbar() {
+export function MainNavbar({user}) {
+    const supaBaseClient = createClient()
+
+    const signOut = async () => {
+        const { error } = await supaBaseClient.auth.signOut();
+        if (!error) {
+            redirect("/login");
+        }
+    }
+
+    console.log(user)
 
     return (
         <Navbar fluid theme={navbarTheme}>
@@ -16,7 +30,12 @@ export function MainNavbar() {
             </Navbar.Brand>
             <div className="flex md:order-2 gap-2">
                 <DarkThemeToggle />
-                <Button size={'md'}><Link href={'/dashboard'}>Login</Link></Button>
+                {!user ? (
+                    <Button size={'md'}><Link href={'/dashboard'}>Login</Link></Button>
+                ) : (
+                    <UserDropdown user={user} />
+                )}
+
                 <Navbar.Toggle/>
             </div>
             <Navbar.Collapse>

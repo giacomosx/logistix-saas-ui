@@ -1,6 +1,7 @@
-'use server'
+'use client'
 
 const Page = () => {
+
     return (
         <div className="page">
             Dashboard

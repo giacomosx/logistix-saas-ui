@@ -23,11 +23,9 @@ const LoginPage = () => {
 
         try {
             const response = await login(null, formData);
-
-            if (response?.error) {
-                setError(response.error);
+            if (!response) {
+                setError(response?.error);
             }
-
 
         } catch (err) {
             console.error("Error:", err);

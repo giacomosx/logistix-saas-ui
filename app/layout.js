@@ -1,13 +1,12 @@
 import {Flowbite, ThemeModeScript} from "flowbite-react";
 import "./globals.css";
 
-
 export const metadata = {
   title: "Logistix",
   description: "Software as a Service App",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
         <head>

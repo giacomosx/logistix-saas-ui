@@ -50,6 +50,8 @@ export async function updateSession(request) {
         supabaseResponse.cookies.set('token', accessToken, {
             httpOnly: true,
         })
+    } else {
+        supabaseResponse.cookies.delete('token')
     }
 
     // IMPORTANT: You *must* return the supabaseResponse object as it is.
